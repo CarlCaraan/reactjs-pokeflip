@@ -11,7 +11,8 @@ function App() {
 
       {/* Start Container */}
       <section className="content-section">
-        <div className="container mx-auto px-12 py-6 bg-white">
+        <div className="container mx-auto px-12 py-6 bg-white rounded-[1.5px]">
+          {/* Instructions */}
           <div className="px-4 py-3 bg-[#f1f1f1]">
             <p>
               <span className="font-bold">Instructions:</span> Click on a card
@@ -21,6 +22,7 @@ function App() {
               less turn.
             </p>
           </div>
+          {/* Button */}
           <button className="py-2 px-4 bg-[#313131] text-white rounded mt-4 flex flex-row gap-2 items-center hover:opacity-90">
             <img className="w-6" src={pokeballImage} alt={pokeballImage} />
             <span>Start Game</span>
