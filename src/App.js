@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import Banner from "./components/Banner";
 import pokeballImage from "./images/pokeball.png";
@@ -12,12 +13,20 @@ const cardImage = [
 ];
 
 function App() {
+  const [cards, setCards] = useState([]);
+  const [turns, setTurns] = useState(0);
+
   // Shuffle Cards
   const shuffleCards = () => {
     const shuffledCards = [...cardImage, ...cardImage]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
+
+    setCards(shuffledCards);
+    setTurns(0);
   };
+
+  console.log(cards, turns);
 
   return (
     <div className="App">
@@ -39,7 +48,10 @@ function App() {
             </p>
           </div>
           {/* Button */}
-          <button className="py-2 px-4 bg-[#313131] text-white rounded mt-4 flex flex-row gap-2 items-center hover:opacity-90">
+          <button
+            onClick={shuffleCards}
+            className="py-2 px-4 bg-[#313131] text-white rounded mt-4 flex flex-row gap-2 items-center hover:opacity-90"
+          >
             <img className="w-6" src={pokeballImage} alt={pokeballImage} />
             <span>Start Game</span>
           </button>
