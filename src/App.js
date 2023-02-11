@@ -2,7 +2,23 @@ import "./App.css";
 import Banner from "./components/Banner";
 import pokeballImage from "./images/pokeball.png";
 
+const cardImage = [
+  { src: "./images/card1.png" },
+  { src: "./images/card2.png" },
+  { src: "./images/card3.png" },
+  { src: "./images/card4.png" },
+  { src: "./images/card5.png" },
+  { src: "./images/card6.png" },
+];
+
 function App() {
+  // Shuffle Cards
+  const shuffleCards = () => {
+    const shuffledCards = [...cardImage, ...cardImage]
+      .sort(() => Math.random() - 0.5)
+      .map((card) => ({ ...card, id: Math.random() }));
+  };
+
   return (
     <div className="App">
       {/* Start Banner */}
