@@ -2,14 +2,15 @@ import { useState } from "react";
 import "./App.css";
 import Banner from "./components/Banner";
 import pokeballImage from "./images/pokeball.png";
+import SingeCard from "./components/SingeCard";
 
 const cardImage = [
-  { src: "./images/card1.png" },
-  { src: "./images/card2.png" },
-  { src: "./images/card3.png" },
-  { src: "./images/card4.png" },
-  { src: "./images/card5.png" },
-  { src: "./images/card6.png" },
+  { src: "card1.jpg" },
+  { src: "card2.jpg" },
+  { src: "card3.jpg" },
+  { src: "card4.jpg" },
+  { src: "card5.jpg" },
+  { src: "card6.jpg" },
 ];
 
 function App() {
@@ -35,8 +36,8 @@ function App() {
       {/* End Banner */}
 
       {/* Start Container */}
-      <section className="content-section">
-        <div className="container mx-auto px-12 py-6 bg-white rounded-[1.5px]">
+      <section className="content-section container mx-auto px-24 py-12">
+        <div className="container bg-white rounded-[1.5px] px-12 py-6">
           {/* Instructions */}
           <div className="px-4 py-3 bg-[#f1f1f1]">
             <p>
@@ -55,6 +56,14 @@ function App() {
             <img className="w-6" src={pokeballImage} alt={pokeballImage} />
             <span>Start Game</span>
           </button>
+
+          {/* Start Card Grid */}
+          <div className="grid grid-cols-6 gap-4 mt-4">
+            {cards.map((card) => (
+              <SingeCard key={card.id} card={card.src} />
+            ))}
+          </div>
+          {/* End Card Grid */}
         </div>
       </section>
       {/* End Container */}
