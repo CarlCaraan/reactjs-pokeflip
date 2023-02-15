@@ -5,12 +5,12 @@ import pokeballImage from "./images/pokeball.png";
 import SingeCard from "./components/SingeCard";
 
 const cardImage = [
-  { src: "card1.jpg" },
-  { src: "card2.jpg" },
-  { src: "card3.jpg" },
-  { src: "card4.jpg" },
-  { src: "card5.jpg" },
-  { src: "card6.jpg" },
+  { src: "card1.jpg", matched: false },
+  { src: "card2.jpg", matched: false },
+  { src: "card3.jpg", matched: false },
+  { src: "card4.jpg", matched: false },
+  { src: "card5.jpg", matched: false },
+  { src: "card6.jpg", matched: false },
 ];
 
 function App() {
@@ -43,10 +43,21 @@ function App() {
   useEffect(() => {
     if (choiceOne && choiceTwo) {
       if (choiceOne.src === choiceTwo.src) {
-        console.log("those cards match");
+        // console.log("those cards match");
+
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.src === choiceOne.src) {
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          });
+        });
+
         resetTurn();
       } else {
-        console.log("those cards do not match");
+        // console.log("those cards do not match");
         resetTurn();
       }
     }
