@@ -3,6 +3,7 @@ import "./App.css";
 import Banner from "./components/Banner";
 import pokeballImage from "./images/pokeball.png";
 import SingeCard from "./components/SingeCard";
+import Footer from "./components/Footer";
 
 const cardImage = [
   { src: "card1.jpg", matched: false },
@@ -129,6 +130,10 @@ function App() {
         </div>
       </section>
       {/* End Container */}
+
+      {/* Start Footer */}
+      <Footer />
+      {/* End Footer */}
     </div>
   );
 }
