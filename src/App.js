@@ -103,10 +103,14 @@ function App() {
           {/* Button */}
           <button
             onClick={shuffleCards}
-            className="py-2 px-4 bg-[#313131] text-white rounded mt-4 flex flex-row gap-2 items-center hover:opacity-90 w-full -pl-4 justify-center
+            className="group py-2 px-4 bg-[#313131] text-white rounded mt-4 flex flex-row gap-2 items-center hover:opacity-90 w-full -pl-4 justify-center
             md:w-auto"
           >
-            <img className="w-6" src={pokeballImage} alt={pokeballImage} />
+            <img
+              className="w-6 group-hover:rotate-180 duration-200"
+              src={pokeballImage}
+              alt={pokeballImage}
+            />
             <span>Start Game</span>
           </button>
 

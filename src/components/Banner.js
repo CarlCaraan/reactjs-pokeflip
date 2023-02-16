@@ -11,7 +11,7 @@ function Banner() {
         src={bannerImage}
         alt={bannerImage}
       />
-      <h4 className="text-center text-4xl text-white font-weight font-bold">
+      <h4 className="text-center text-4xl text-white font-weight font-bold brand-text">
         Pokeflip
       </h4>
       <img
