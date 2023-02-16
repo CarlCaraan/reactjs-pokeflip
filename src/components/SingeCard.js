@@ -1,23 +1,24 @@
 import React from "react";
+import "./SingleCard.css";
 
-function SingeCard({ card, handleChoice }) {
+function SingeCard({ card, handleChoice, flipped }) {
   const handleClick = () => {
     handleChoice(card);
   };
 
   return (
     <div className="card">
-      <div>
+      <div className={flipped ? "flipped" : ""}>
         {/* front card */}
         <img
           src={require(`../../src/images/${card.src}`)}
-          className="w-full rounded-xl shadow-lg"
+          className="front w-full rounded shadow-lg"
           alt="front-card"
         />
         {/* back card */}
         <img
           src={require("../../src/images/back.png")}
-          className="w-full rounded-xl shadow-lg"
+          className="back w-full rounded shadow-lg"
           alt="back-card"
           onClick={handleClick}
         />

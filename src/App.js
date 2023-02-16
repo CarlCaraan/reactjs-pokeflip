@@ -54,11 +54,12 @@ function App() {
             }
           });
         });
-
         resetTurn();
       } else {
         // console.log("those cards do not match");
-        resetTurn();
+        setTimeout(() => {
+          resetTurn();
+        }, 1000);
       }
     }
   }, [choiceOne, choiceTwo]);
@@ -77,11 +78,20 @@ function App() {
       {/* End Banner */}
 
       {/* Start Container */}
-      <section className="content-section container mx-auto px-24 py-12">
-        <div className="container bg-white rounded-[1.5px] px-12 py-6">
+      <section
+        className="content-section container mx-auto px-4 py-3
+        md:px-24 md:py-12"
+      >
+        <div
+          className="container bg-white rounded-[1.5px] px-4 py-3 
+          md:px-12 md:py-6"
+        >
           {/* Instructions */}
           <div className="px-4 py-3 bg-[#f1f1f1]">
-            <p>
+            <p
+              className="text-sm
+              md:text-base"
+            >
               <span className="font-bold">Instructions:</span> Click on a card
               to activate it, and if the activation of two cards match, it will
               be considered as a point, but if the activation of two cards does
@@ -92,19 +102,26 @@ function App() {
           {/* Button */}
           <button
             onClick={shuffleCards}
-            className="py-2 px-4 bg-[#313131] text-white rounded mt-4 flex flex-row gap-2 items-center hover:opacity-90"
+            className="py-2 px-4 bg-[#313131] text-white rounded mt-4 flex flex-row gap-2 items-center hover:opacity-90 w-full -pl-4 justify-center
+            md:w-auto"
           >
             <img className="w-6" src={pokeballImage} alt={pokeballImage} />
             <span>Start Game</span>
           </button>
 
           {/* Start Card Grid */}
-          <div className="grid grid-cols-6 gap-4 mt-4">
+          <div
+            className="grid grid-cols-4 gap-2 mt-4
+            md:grid-cols-6 md:gap-4"
+          >
             {cards.map((card) => (
               <SingeCard
                 key={card.id}
                 card={card}
                 handleChoice={handleChoice}
+                flipped={
+                  card === choiceOne || card === choiceTwo || card.matched
+                }
               />
             ))}
           </div>
