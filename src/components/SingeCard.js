@@ -1,7 +1,7 @@
 import React from "react";
 import "./SingleCard.css";
 
-function SingeCard({ card, handleChoice, flipped }) {
+function SingeCard({ card, handleChoice, flipped, disabled }) {
   const handleClick = () => {
     handleChoice(card);
   };

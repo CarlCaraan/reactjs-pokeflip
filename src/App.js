@@ -22,6 +22,8 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
 
+  const [disabled, setDisabled] = useState(false);
+
   // Shuffle Cards
   const shuffleCards = () => {
     const shuffledCards = [...cardImage, ...cardImage]
@@ -42,6 +44,7 @@ function App() {
 
   // compare 2 selected cards
   useEffect(() => {
+    setDisabled(true);
     if (choiceOne && choiceTwo) {
       if (choiceOne.src === choiceTwo.src) {
         // console.log("those cards match");
@@ -70,6 +73,7 @@ function App() {
     setChoiceOne(null);
     setChoiceTwo(null);
     setTurns((prevTurns) => prevTurns + 1);
+    setDisabled(false);
   };
 
   return (
@@ -107,7 +111,7 @@ function App() {
             md:w-auto"
           >
             <img
-              className="w-6 group-hover:rotate-180 duration-200"
+              className="w-6 group-hover:rotate-[360deg] transition-all ease-out"
               src={pokeballImage}
               alt={pokeballImage}
             />
@@ -127,6 +131,7 @@ function App() {
                 flipped={
                   card === choiceOne || card === choiceTwo || card.matched
                 }
+                disabled={disabled}
               />
             ))}
           </div>
