@@ -30,6 +30,8 @@ function App() {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
 
+    setChoiceOne(null);
+    setChoiceTwo(null);
     setCards(shuffledCards);
     setTurns(0);
   };
@@ -42,10 +44,10 @@ function App() {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   };
 
-  // compare 2 selected cards
+  // Compare 2 Selected Cards
   useEffect(() => {
-    setDisabled(true);
     if (choiceOne && choiceTwo) {
+      setDisabled(true);
       if (choiceOne.src === choiceTwo.src) {
         // console.log("those cards match");
 
@@ -76,6 +78,16 @@ function App() {
     setDisabled(false);
   };
 
+  // Start a New Game Automatically
+  useEffect(() => {
+    shuffleCards();
+  }, []);
+  useEffect(() => {
+    if (turns === 13) {
+      shuffleCards();
+    }
+  }, [turns]);
+
   return (
     <div className="App">
       {/* Start Banner */}
@@ -99,9 +111,11 @@ function App() {
             >
               <span className="font-bold">Instructions:</span> Click on a card
               to activate it, and if the activation of two cards match, it will
-              be considered as a point, but if the activation of two cards does
-              not match, the cards will reset. You must complete the puzzle with
-              less turn.
+              be considered as a point, but if the number of turns{" "}
+              <strong className="text-orange-500">reaches 13</strong>, the cards
+              will <strong className="text-red-500">reset</strong>. You must
+              complete the puzzle with{" "}
+              <strong className="text-green-500">less turn</strong>.
             </p>
           </div>
           {/* Button */}
@@ -115,7 +129,7 @@ function App() {
               src={pokeballImage}
               alt={pokeballImage}
             />
-            <span>Start Game</span>
+            <span>New Game</span>
           </button>
 
           {/* Start Card Grid */}
@@ -136,6 +150,13 @@ function App() {
             ))}
           </div>
           {/* End Card Grid */}
+
+          <p className="text-center mt-4 font-bold text-zinc-900">
+            Turns:{" "}
+            <span className={turns > 9 ? "text-red-500" : "text-green-500"}>
+              {turns}
+            </span>
+          </p>
         </div>
       </section>
       {/* End Container */}
