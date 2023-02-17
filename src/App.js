@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import "./App.css";
 import Banner from "./components/Banner";
 import pokeballImage from "./images/pokeball.png";
@@ -23,6 +23,7 @@ function App() {
   const [choiceTwo, setChoiceTwo] = useState(null);
 
   const [disabled, setDisabled] = useState(false);
+  const [completed, setCompleted] = useState(false);
 
   // Shuffle Cards
   const shuffleCards = () => {
@@ -36,7 +37,7 @@ function App() {
     setTurns(0);
   };
 
-  console.log(cards, turns);
+  // console.log(cards, turns);
 
   // Handle a choice
   const handleChoice = (card) => {
@@ -86,7 +87,16 @@ function App() {
     if (turns === 10) {
       shuffleCards();
     }
-  }, [turns]);
+
+    // Check if All Cards are matched
+    const allMatched = cards.every((card) => card.matched === true);
+    // console.log(cards);
+    if (allMatched) {
+      setCompleted(true);
+    } else {
+      setCompleted(false);
+    }
+  }, [turns, cards]);
 
   return (
     <div className="App">
@@ -112,7 +122,7 @@ function App() {
               <span className="font-bold">Instructions:</span> Click on a card
               to activate it, and if the activation of two cards match, it will
               be considered as a point, but if the number of turns{" "}
-              <strong className="text-orange-500">reaches 13</strong>, the cards
+              <strong className="text-orange-500">reaches 10</strong>, the cards
               will <strong className="text-red-500">reset</strong>. You must
               complete the puzzle with{" "}
               <strong className="text-green-500">less turn</strong>.
@@ -152,10 +162,17 @@ function App() {
           {/* End Card Grid */}
 
           <p className="text-center mt-4 font-bold text-zinc-900">
-            Turns:{" "}
-            <span className={turns > 7 ? "text-red-500" : "text-orange-500"}>
-              {turns}
-            </span>
+            {!completed && (
+              <Fragment>
+                Turns:{" "}
+                <span
+                  className={turns > 7 ? "text-red-500" : "text-orange-500"}
+                >
+                  {turns}
+                </span>
+              </Fragment>
+            )}
+            {completed && <span className="text-green-500">Completed</span>}
           </p>
         </div>
       </section>
