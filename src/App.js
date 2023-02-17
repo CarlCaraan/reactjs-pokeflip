@@ -83,7 +83,7 @@ function App() {
     shuffleCards();
   }, []);
   useEffect(() => {
-    if (turns === 13) {
+    if (turns === 10) {
       shuffleCards();
     }
   }, [turns]);
@@ -153,7 +153,7 @@ function App() {
 
           <p className="text-center mt-4 font-bold text-zinc-900">
             Turns:{" "}
-            <span className={turns > 9 ? "text-red-500" : "text-green-500"}>
+            <span className={turns > 7 ? "text-red-500" : "text-orange-500"}>
               {turns}
             </span>
           </p>
