@@ -83,11 +83,8 @@ function App() {
   useEffect(() => {
     shuffleCards();
   }, []);
-  useEffect(() => {
-    if (turns === 10) {
-      shuffleCards();
-    }
 
+  useEffect(() => {
     // Check if All Cards are matched
     const allMatched = cards.every((card) => card.matched === true);
     // console.log(cards);
@@ -95,6 +92,10 @@ function App() {
       setCompleted(true);
     } else {
       setCompleted(false);
+      // Reset Games if turns reached its limit
+      if (turns === 10) {
+        shuffleCards();
+      }
     }
   }, [turns, cards]);
 
